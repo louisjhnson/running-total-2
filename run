@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Total</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        input, button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jack and Louis, A Running Total</h1>
+    <input type="number" id="numberInput" placeholder="How far did you run?">
+    <button id="addButton">Add</button>
+    <h2><span id="total">0</span> km</h2>
+
+    <script>
+        let total = 0;
+
+        document.getElementById('addButton').onclick = function() {
+            addToTotal();
+        };
+
+        document.getElementById('numberInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                addToTotal();
+            }
+        });
+
+        function addToTotal() {
+            const inputValue = parseFloat(document.getElementById('numberInput').value);
+            if (!isNaN(inputValue)) {
+                total += inputValue;
+                document.getElementById('total').innerText = total;
+                document.getElementById('numberInput').value = ''; // Clear input
+            }
+        }
+    </script>
+</body>
+</html>
